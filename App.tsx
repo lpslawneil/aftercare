@@ -7,7 +7,6 @@ import FundingCalculator from './components/FundingCalculator';
 import PlanCompletion from './components/PlanCompletion';
 import SupportPlan from './components/SupportPlan';
 import KnowledgePages from './components/KnowledgePages';
-import KnowledgeHub from './components/KnowledgeHub';
 import { PatientDetails, NeedItem } from './types';
 import { INITIAL_PATIENT_DETAILS } from './constants';
 import { ScrollText, Calculator, FileText, Save, Download, RotateCcw, CheckCircle2, AlertCircle, X, ExternalLink, FileJson } from 'lucide-react';
@@ -19,7 +18,6 @@ interface Notification {
 
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'assessment' | 'plan' | 'knowledge'>('knowledge');
-  const [mobilePreview, setMobilePreview] = useState(false);
   const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
   const [patientDetails, setPatientDetails] = useState<PatientDetails>(INITIAL_PATIENT_DETAILS);
   const [needs, setNeeds] = useState<NeedItem[]>([]);
@@ -124,7 +122,7 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col font-sans text-brand-black bg-brand-white relative">
-      <div className={mobilePreview ? "max-w-[420px] mx-auto w-full min-h-screen bg-[#F6F5F2] shadow-xl border border-black/10" : "w-full"}>
+      <div className="w-full">
       <Header isOnline={isOnline} />
       
       {/* Notification Toast */}
@@ -171,13 +169,6 @@ const App: React.FC = () => {
         
         {/* Actions Toolbar */}
         <div className="flex justify-end gap-2 mb-4 print:hidden">
-            <button
-                onClick={() => setMobilePreview(prev => !prev)}
-                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-brand-black border border-brand-grey/50 rounded-sm hover:bg-brand-grey/10 transition-colors"
-                title="Toggle mobile preview"
-            >
-                {mobilePreview ? 'Desktop Preview' : 'Mobile Preview'}
-            </button>
             <button 
                 onClick={loadWork}
                 className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-brand-black border border-brand-grey/50 rounded-sm hover:bg-brand-grey/10 transition-colors"
