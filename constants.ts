@@ -625,10 +625,19 @@ export const KNOWLEDGE_PAGES = [
             {
                 title: "Care Act: deeming for specified accommodation",
                 text: "If a local authority arranges specified accommodation, ordinary residence is deemed to remain with the placing authority even when accommodation is out of area.",
+                bullets: [
+                    "Nursing homes/care homes: accommodation that includes nursing care or personal care.",
+                    "Supported living/extra care housing: either specialist or adapted accommodation (features built in/changed to meet care needs, including safety/accessibility features), or accommodation intended for adults with care and support needs where personal care is also available (usually from a different provider).",
+                    "Shared Lives schemes: accommodation and care/support provided by an approved Shared Lives carer in the carer’s home under an agreement between the adult, the carer and any responsible local authority. Personal care is normally provided but is not required in every case."
+                ],
+                pitfalls: [
+                    "Not specified: general housing without personal care provision or without specialist/adapted features.",
+                    "Not specified: placements arranged solely by the individual (self‑funded) without LA arranging the accommodation."
+                ],
                 checklist: [
                     "Confirm whether the LA arranged the placement.",
                     "Check whether the accommodation is ‘specified’ for deeming.",
-                    "Record the legal basis for the deeming decision."
+                    "Record the legal basis for the deeming decision (regulation/guidance reference)."
                 ]
             },
             {
