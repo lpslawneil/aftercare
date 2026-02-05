@@ -394,7 +394,7 @@ const NeedsAssessment: React.FC<NeedsAssessmentProps> = ({ needs, setNeeds, deta
 
             <div className="bg-brand-black text-brand-white p-4 rounded-sm shadow-xl border-l-4 border-brand-gold">
                 <h4 className="font-bold text-xs uppercase tracking-widest mb-2 flex items-center gap-2">
-                    <ShieldCheck size={14} className="text-brand-gold"/> Neil's Checklist
+                    <ShieldCheck size={14} className="text-brand-gold"/> Checklist
                 </h4>
                 <ul className="text-[10px] space-y-2 opacity-80 italic">
                     <li>• Does every s.117 need have a Limb 2 evidence entry?</li>
