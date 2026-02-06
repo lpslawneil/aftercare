@@ -9,7 +9,7 @@ import SupportPlan from './components/SupportPlan';
 import KnowledgePages from './components/KnowledgePages';
 import { PatientDetails, NeedItem } from './types';
 import { INITIAL_PATIENT_DETAILS } from './constants';
-import { ScrollText, Calculator, FileText, Save, Download, RotateCcw, CheckCircle2, AlertCircle, X, ExternalLink, FileJson } from 'lucide-react';
+import { ScrollText, Calculator, FileText, Save, Download, RotateCcw, CheckCircle2, AlertCircle, X, ExternalLink, FileJson, Lock } from 'lucide-react';
 
 interface Notification {
   message: string;
@@ -18,6 +18,7 @@ interface Notification {
 
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'assessment' | 'plan' | 'knowledge'>('knowledge');
+  const isPremium = false;
   const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
   const [patientDetails, setPatientDetails] = useState<PatientDetails>(INITIAL_PATIENT_DETAILS);
   const [needs, setNeeds] = useState<NeedItem[]>([]);
@@ -222,27 +223,44 @@ const App: React.FC = () => {
                     <ScrollText size={18} /> Knowledge Pages
                 </button>
                 <button 
-                    onClick={() => setActiveTab('assessment')}
+                    onClick={() => isPremium && setActiveTab('assessment')}
                     className={`flex items-center gap-2 px-6 py-2.5 rounded-sm text-sm font-medium transition-all ${
                         activeTab === 'assessment' 
                         ? 'bg-brand-gold text-brand-black shadow-md' 
-                        : 'text-brand-black/70 hover:bg-brand-grey/10'
+                        : isPremium ? 'text-brand-black/70 hover:bg-brand-grey/10' : 'text-brand-grey cursor-not-allowed bg-brand-grey/10'
                     }`}
+                    title={isPremium ? 'Entitlement Tool' : 'Premium feature'}
                 >
-                    <Calculator size={18} /> Entitlement Tool
+                    {!isPremium && <Lock size={16} />} <Calculator size={18} /> Entitlement Tool <span className="text-[10px] uppercase tracking-widest">Premium</span>
                 </button>
                 <button 
-                    onClick={() => setActiveTab('plan')}
+                    onClick={() => isPremium && setActiveTab('plan')}
                     className={`flex items-center gap-2 px-6 py-2.5 rounded-sm text-sm font-medium transition-all ${
                         activeTab === 'plan' 
                         ? 'bg-brand-gold text-brand-black shadow-md' 
-                        : 'text-brand-black/70 hover:bg-brand-grey/10'
+                        : isPremium ? 'text-brand-black/70 hover:bg-brand-grey/10' : 'text-brand-grey cursor-not-allowed bg-brand-grey/10'
                     }`}
+                    title={isPremium ? 'View Draft Plan' : 'Premium feature'}
                 >
-                    <FileText size={18} /> View Draft Plan
+                    {!isPremium && <Lock size={16} />} <FileText size={18} /> View Draft Plan <span className="text-[10px] uppercase tracking-widest">Premium</span>
                 </button>
             </div>
         </div>
+
+        {!isPremium && (
+            <div className="max-w-5xl mx-auto mb-6 bg-brand-gold/10 border border-brand-gold/30 rounded-xl p-3 text-sm text-brand-black flex items-center justify-between gap-4">
+                <div className="flex items-center gap-2">
+                    <Lock size={16} />
+                    <span>Knowledge Pages are free. Entitlement Tool and Draft Plan are premium features.</span>
+                </div>
+                <a
+                    href="mailto:neil@lpslaw.co.uk?subject=Aftercare%20App%20Upgrade"
+                    className="px-4 py-2 text-xs font-bold uppercase tracking-widest bg-brand-black text-brand-white rounded-lg hover:bg-brand-black/80"
+                >
+                    Upgrade
+                </a>
+            </div>
+        )}
 
         {activeTab === 'assessment' && (
             <div className="space-y-6 max-w-5xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
